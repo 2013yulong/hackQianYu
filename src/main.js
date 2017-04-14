@@ -89,7 +89,7 @@ Main.prototype.play = function() {
 		// lt.style['width'] = getStyle(lb, 'width')
 		window.sliderFont = setInterval(function() {
 			parseInt(getStyle(lt, 'width')) >= sw ? clearInterval(window.sliderFont) : lt.style['width'] = i++ + 'px';
-		}, 10);
+		}, getStyle(lt, 'width')/time);
 		window.slidOver = setTimeout(function(){
 			clearInterval(sliderFont);
 			document.getElementById(lb.getAttribute('id') + '1').remove();
