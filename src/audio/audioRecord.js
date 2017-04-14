@@ -238,6 +238,6 @@ function visualize(stream) {
 
     canvasCtx.lineTo(canvas.width, canvas.height/2);
     canvasCtx.stroke();
-
+    // $('#mRecord').css('')
   }
 }

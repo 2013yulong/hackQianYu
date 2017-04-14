@@ -25,13 +25,9 @@
 		<div class="lrc-go-main">
 			<div id= "lrc-go"></div>
 		</div>
-		<p>
-			<button id="mRecord" onclick="micRecord();">record</button>
-		</p>
-
-		<p>
+		<p class="recodButton">
 			<canvas class="visualizer" id="cvs"></canvas>
-			<button class="stop" onclick="micStop()">Stop</button>
+			<button id="mRecord" onclick="micRecord();">record</button><button class="stop" onclick="micStop()">Stop</button>
 		</p>
 		<p>
 			<audio id="audioplayer" controls="controls" ></audio>
