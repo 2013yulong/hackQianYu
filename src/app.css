@@ -13,6 +13,7 @@ body{
     box-shadow: #f7d4d4 0px 0px 14px 1px;
     border-radius: 5px;
     text-align: left;
+    padding: 0 15px;
 }
 #lrc-go {
     margin-top: 25px;
@@ -34,7 +35,6 @@ body{
 #lrctxt{
 	display: none;
 }
-
 .red{
 	color: #ff6a00;
 	width: 0;
