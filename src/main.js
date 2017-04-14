@@ -14,7 +14,7 @@ Main.prototype.initalize = function() {
 Main.prototype.lrcloaded = function(lrcStr) {
 	this.lrc = this.lrcCtrl.parse(lrcStr);
 	// console.log('--------this.lrc',this.lrc[0][0])
-	
+
 	var _l = this.lrc.length;
 	this.lrcstr = "";
 	var t = 0;
