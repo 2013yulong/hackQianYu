@@ -3,14 +3,16 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>千语</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-		<link rel="stylesheet" href="src/app.css">
+		<title></title>
+
 	</head>
 
 	<body>
 		<p>
-			<video src="mediasrc/material.mp4" width="320" height="240" controls="controls" id="videoplayer" onplay="playMth()" onpause="pauseMth()" onended="stopMth()" />
+			<video src="mediasrc/original.mp4" width="320" height="240" controls="controls" id="videoplayer" onplay="playMth()" onpause="pauseMth()" onended="stopMth()" />
+		</p>
+		<p hidden="hidden">
+			<audio id="aplayer" ></audio> 
 		</p>
 		<p>
 			<textarea id="lrctxt" cols="40"></textarea>
@@ -19,9 +21,6 @@
 		<p>
 			<textarea id="lrcalltxt" cols="40"></textarea>
 		</p>
-		<div class="lrc-go-main">
-			<div id= "lrc-go"></div>
-		</div>
 		<p>
 			<button id="mRecord" onclick="micRecord();">record</button>
 		</p>
@@ -31,7 +30,7 @@
 			<button class="stop" onclick="micStop()">Stop</button>
 		</p>
 		<p>
-			<audio id="audioplayer" controls="controls"></audio>
+			<audio id="audioplayer" controls="controls" ></audio>
 		</p>
 		<p>
 			<input type="button" id="play" disabled value="加载中..." onclick="audioCtrl('play')"/>
@@ -61,9 +60,11 @@
 			<input type="button" id="eq1" value="eqtest" onclick="audioEq()" />
 			<input type="button" id="eq2" value="eq取消" onclick="audioEq(-1)" />
 		</p>
+		<p> 
+			<button id="mRecdownloadord" onclick="downloadFile();">Download file</button>
+		</p>
 	</body>
 	<script type="text/javascript" src="src/main.js"></script>
-	<script type="text/javascript" src="src/jquery.2.2.4.min.js"></script>
 	<script type="text/javascript" src="src/lrc/loader.js"></script>
 	<script type="text/javascript" src="src/lrc/lrcCtrl.js"></script>
 	<script type="text/javascript" src="src/lrc/lrcParse.js"></script>
@@ -122,6 +123,10 @@
 				}
 				main.audioEdit.setEQValue(arr);
 			}
+		}
+		
+		function downloadFile(){
+			main.downloadFile();
 		}
 	</script>
 
