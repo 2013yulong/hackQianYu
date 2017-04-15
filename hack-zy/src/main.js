@@ -64,7 +64,7 @@ Main.prototype.micStop = function() {
 
 Main.prototype.saveAudioData = function(blob){  
 	
-	downloadFile(blob);
+	/*downloadFile(blob);
 	
 	function downloadFile (blob){
 		var a = document.createElement('a');
@@ -74,7 +74,7 @@ Main.prototype.saveAudioData = function(blob){
 		a.download = filename;
 		a.click();
 		window.URL.revokeObjectURL(url);
-	}
+	}*/
 	
 	var url = window.URL.createObjectURL(blob);
 	this.audioplayer = document.getElementById("audioplayer");
