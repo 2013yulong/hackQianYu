@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no"/>
     <title>均衡器（BiquadFilter）</title>
     <style>
@@ -21,8 +20,151 @@
             color: #ff4500;
         }
     </style>
+    <meta charset="UTF-8">
+        <title>千语</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <link rel="stylesheet" href="src/app.css">
 </head>
 <body>
+<div class="header">
+        
+        <a href="index.html" class="logo js_nav_logo">搜狐<span>千语</span></a>
+
+        <div><a href="demo.html" class="qianyulu">查看千语demo</a></div>
+    </div>
+        <p class="qy-video">
+            <video src="mediasrc/original.mp4"  controls="controls" id="videoplayer" onplay="playMth()" onpause="pauseMth()" onended="stopMth()" />
+        </p>
+        <p hidden="hidden">
+            <audio id="aplayer" ></audio> 
+        </p>
+        <p>
+            <textarea id="lrctxt" cols="40"></textarea>
+
+        </p>
+        <p>
+            <textarea id="lrcalltxt" cols="40"></textarea>
+        </p>
+        <div class="lrc-go-main">
+            <div id= "lrc-go"></div>
+        </div>
+        <div class="qy-recod">
+            <p class="recodButton single">
+                <canvas class="visualizer" id="cvs"></canvas>
+                <button id="mRecord" onclick="micRecord();">record</button><button class="stop" onclick="micStop()">Stop</button>
+            </p>
+            <p>
+                <audio id="audioplayer" controls="controls" ></audio>
+            </p>
+            <p class="audioControl double">
+                <div class="qy-left">控制</div>
+                <input type="button" id="play" disabled value="请先录音..." onclick="audioCtrl('play')"/>
+                <input type="button" id="stop" value="停止" onclick="audioCtrl('stop')"/>
+                <input type="button" id="suspend" value="暂停" onclick="audioCtrl('pause')"/>
+                <input type="button" id="resume" value="恢复" onclick="audioCtrl('resume')"/>
+            </p>
+            <p class="position single">
+                <div class="qy-left">3d</div>
+                <input type="button" id="pos" value="3d位置x" onclick="audioPos('x')" />
+                <input type="button" id="pos" value="3d位置y" onclick="audioPos('y')" />
+                <input type="button" id="pos" value="3d位置z" onclick="audioPos('z')" />
+            </p>
+            <p class="location double">
+                <div class="qy-left">混响</div>
+                <input type="button" id="reb1" value="电话" onclick="audioReverber(0)" />
+                <input type="button" id="reb2" value="室内" onclick="audioReverber(1)" />
+                <input type="button" id="reb3" value="山洞" onclick="audioReverber(2)" />
+                <input type="button" id="reb4" value="教堂" onclick="audioReverber(3)" />
+                <input type="button" id="reb5" value="厨房" onclick="audioReverber(4)" />
+                <input type="button" id="reb6" value="洗手间" onclick="audioReverber(5)" />
+                <input type="button" id="reb7" value="取消混响" onclick="audioReverber(-1)" />
+            </p>
+            <p class="volum single">
+                <div class="qy-left">音量</div>
+                <input type="button" id="volue1" value="音量+" onclick="audioVolumn(5)" />
+                <input type="button" id="volue1" value="音量-" onclick="audioVolumn(5)" />
+            </p>
+            <p class="eqtest double">
+                <div class="qy-left">均衡器</div>
+                <input type="button" value="高频增强" onclick="audioEq()" />
+                <input type="button"  value="低频增强" onclick="audioEq()" />
+                <input type="button" id="eq3" value="自定义..." onclick="audioEq()" />
+                <input type="button"  value="取消" onclick="audioEq(-1)" />
+            </p>
+            <p class="download"> 
+                <button id="mRecdownloadord" onclick="downloadFile();">Download file</button>
+            </p>
+        </div>
+<div class="clearBoth"></div> 
+    <script type="text/javascript" src="src/jquery.2.2.4.min.js"></script>
+    <script type="text/javascript" src="src/lrc/loader.js"></script>
+    <script type="text/javascript" src="src/lrc/lrcCtrl.js"></script>
+    <script type="text/javascript" src="src/lrc/lrcParse.js"></script>
+    <script type="text/javascript" src="src/3th/myapi.js"></script>
+    <script type="text/javascript" src="src/audio/audioRecord.js"></script>
+    <script type="text/javascript" src="src/audio/audioEdit.js"></script>
+    <script type="text/javascript" src="src/main.js"></script>
+    <script language="javascript" type="text/javascript">
+        var v = document.getElementById("videoplayer");
+        var main = new Main(v);
+        main.initalize();
+
+        function playMth() {
+            main.play();
+        }
+
+        function pauseMth() {
+            main.pause();
+        }
+
+        function stopMth() {
+            main.stop();
+        }
+
+        function micRecord() {
+            main.micRecord();
+        }
+
+        function micStop() {
+            main.micStop();
+        }
+
+        function audioCtrl(type) {
+           main.audioCtrl(type);
+        }
+
+        function audioPos(str) {
+            main.audioEdit.pos(str);
+        }
+
+        function audioReverber(type) {
+            main.audioEdit.setReverber(type);
+        }
+
+        function audioVolumn(num) {
+            main.audioEdit.setVolume(num);
+        }
+
+        function audioEq(type) {
+            if(type === -1) {
+                var arr = [];
+                main.audioEdit.setEQValue(arr);
+            } else {
+                var arr = [];
+                for(var i = 0; i < 10; i++) {
+                    arr.push(-30);
+                }
+                main.audioEdit.setEQValue(arr);
+            }
+        }
+        
+        function downloadFile(){
+            main.downloadFile();
+        }
+        $(document).on('click', '#eq3', function() {
+            $('#qy-eq-0').show();
+          });
+    </script>
 <h3>均衡器（BiquadFilter）</h3>
 <div id="eq">
     <section class="filter">

@@ -70,10 +70,10 @@
 			</p>
 			<p class="eqtest double">
 				<div class="qy-left">均衡器</div>
-				<input type="button" id="eq1" value="高频增强" onclick="audioEq()" />
-				<input type="button" id="eq2" value="低频增强" onclick="audioEq()" />
+				<input type="button" value="高频增强" onclick="audioEq()" />
+				<input type="button"  value="低频增强" onclick="audioEq()" />
 				<input type="button" id="eq3" value="自定义..." onclick="audioEq()" />
-				<input type="button" id="eq2" value="取消" onclick="audioEq(-1)" />
+				<input type="button"  value="取消" onclick="audioEq(-1)" />
 			</p>
 			<p class="download"> 
 				<button id="mRecdownloadord" onclick="downloadFile();">Download file</button>
@@ -146,15 +146,18 @@
 			main.downloadFile();
 		}
 		$(document).on('click', '#eq3', function() {
-		    $('#qy-eq-0').show();
+		    $('.qy-eqest').show();
+		  });
+		$(document).on('click', '.qy-bg', function() {
+		    $('.qy-eqest').hide();
 		  });
 	</script>
-<!-- 	<div class="qy-eqest">
+	<div class="qy-eqest">
 		<div class="qy-bg"></div>
-		<div class="qy-cont"> -->
+		<div class="qy-cont">
 		<div id="qy-eq-0">
 			<h3>均衡器（BiquadFilter）</h3>
-<div id="qy">
+<div id="eq">
     <section class="filter">
         <label for="filter1">32HZ</label>
         <input id="filter1" type="range" value="0" step="1"
@@ -217,7 +220,7 @@
     </section>
 </div>
 <p>
-    <input type="button" id="play" disabled value="加载中..."/>
+    <input type="button" id="play-0" disabled value="拖拽可随时调节均衡度"/>
 </p>
 <script type="text/javascript" src="sound.js"></script>
 <script type="text/javascript">
@@ -254,21 +257,21 @@
 
 
 
-        var loadedCallback = function(){
-            document.getElementById('play').removeAttribute('disabled');
-            document.getElementById('play').value = '播放';
-        };
-        var gangnam = new Sound(ctx);
-        gangnam.setOutput(biquads[0]);
-        //gangnam.load('res/gangnam_style_clip.mp3', loadedCallback);
-        //gangnam.setLoop(5.106, 12.386);
-        gangnam.load('res/sr1.mp3', loadedCallback);
-        gangnam.setLoop(1.755, 12.813);
+        // var loadedCallback = function(){
+        //     // document.getElementById('play').removeAttribute('disabled');
+        //     // document.getElementById('play').value = '播放';
+        // };
+        // var gangnam = new Sound(ctx);
+        // // gangnam.setOutput(biquads[0]);
+        // //gangnam.load('res/gangnam_style_clip.mp3', loadedCallback);
+        // //gangnam.setLoop(5.106, 12.386);
+        // // gangnam.load('res/sr1.mp3', loadedCallback);
+        // // gangnam.setLoop(1.755, 12.813);
 
-        document.getElementById('play').onclick = function () {
-            gangnam.play();
-            document.getElementById('play').setAttribute('disabled', 'disabled');
-        };
+        // document.getElementById('play').onclick = function () {
+        //     gangnam.play();
+        //     document.getElementById('play').setAttribute('disabled', 'disabled');
+        // };
     })();
 </script>
     <style>
@@ -287,8 +290,8 @@
             color: #ff4500;
         }
     </style>
-<!-- 		</div>
-	</div> -->
+		</div>
+	</div>
 </div>
 </body>
 </html>

@@ -22,7 +22,7 @@ body{
     height: 79px;
     overflow-y: scroll;
     box-shadow: #f7d4d4 0px 0px 14px 1px;
-    border-radius: 5px;
+    border-radius: 15px;
     text-align: left;
     padding: 0 15px;
 }
@@ -74,6 +74,7 @@ body{
 .download button{
     /*background-color: #90fb04;*/
     width: 100%;
+    margin-bottom: 50px;
 }
 .qy-video video{
     width: 100%;
@@ -106,6 +107,7 @@ body{
     /*float: left;*/
     font-size: 16px;
     color: #888;
+    margin-bottom: 5px;
 }
 .header{
     margin-top: 20px;
@@ -118,10 +120,10 @@ body{
     height: 22px;
     line-height: 22px;
 }
-#qy-eq-0{
+.qy-eqest{
     display: none;
 }
-/*
+
 .qy-eqest {
   position: fixed;
   z-index: 111;
@@ -143,4 +145,4 @@ body{
     border-radius: 8px;
     text-align: center;
     padding: 14px;
-}*/
+}
