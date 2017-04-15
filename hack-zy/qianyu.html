@@ -3,22 +3,18 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
-
+		<title>千语</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="stylesheet" href="src/app.css">
 	</head>
 
 	<body>
+		<a href="qianyu.html" class="logo js_nav_logo">搜狐<span>千语</span></a>
 		<p>
 			<video src="mediasrc/original.mp4" width="320" height="240" controls="controls" id="videoplayer" onplay="playMth()" onpause="pauseMth()" onended="stopMth()" />
 		</p>
 		<p hidden="hidden">
 			<audio id="aplayer" ></audio> 
-		</p>
-		<p>
-			<button id="mRecord" onclick="micRecord();">record</button>
-		</p>
-		<p>
-			<button class="stop" onclick="micStop()">Stop</button>
 		</p>
 		<p>
 			<textarea id="lrctxt" cols="40"></textarea>
@@ -27,26 +23,28 @@
 		<p>
 			<textarea id="lrcalltxt" cols="40"></textarea>
 		</p>
-		
-		<p>
+		<div class="lrc-go-main">
+			<div id= "lrc-go"></div>
+		</div>
+		<p class="recodButton">
 			<canvas class="visualizer" id="cvs"></canvas>
-			
+			<button id="mRecord" onclick="micRecord();">record</button><button class="stop" onclick="micStop()">Stop</button>
 		</p>
 		<p>
 			<audio id="audioplayer" controls="controls" ></audio>
 		</p>
-		<p>
-			<input type="button" id="play" disabled value="加载中..." onclick="audioCtrl('play')"/>
+		<p class="audioControl">
+			<input type="button" id="play" disabled value="请录音..." onclick="audioCtrl('play')"/>
 			<input type="button" id="stop" value="停止" onclick="audioCtrl('stop')"/>
 			<input type="button" id="suspend" value="暂停" onclick="audioCtrl('pause')"/>
 			<input type="button" id="resume" value="恢复" onclick="audioCtrl('resume')"/>
 		</p>
-		<p>
+		<p class="position">
 			<input type="button" id="pos" value="3d位置x" onclick="audioPos('x')" />
 			<input type="button" id="pos" value="3d位置y" onclick="audioPos('y')" />
 			<input type="button" id="pos" value="3d位置z" onclick="audioPos('z')" />
 		</p>
-		<p>
+		<p class="location">
 			<input type="button" id="reb1" value="电话" onclick="audioReverber(0)" />
 			<input type="button" id="reb2" value="室内" onclick="audioReverber(1)" />
 			<input type="button" id="reb3" value="山洞" onclick="audioReverber(2)" />
@@ -55,25 +53,26 @@
 			<input type="button" id="reb6" value="洗手间" onclick="audioReverber(5)" />
 			<input type="button" id="reb7" value="取消混响" onclick="audioReverber(-1)" />
 		</p>
-		<p>
+		<p class="volum">
 			<input type="button" id="volue1" value="音量5" onclick="audioVolumn(5)" />
 			<input type="button" id="volue2" value="音量0.1" onclick="audioVolumn(0.1)" />
 		</p>
-		<p>
+		<p class="eqtest">
 			<input type="button" id="eq1" value="eqtest" onclick="audioEq()" />
 			<input type="button" id="eq2" value="eq取消" onclick="audioEq(-1)" />
 		</p>
-		<p> 
+		<p class="download"> 
 			<button id="mRecdownloadord" onclick="downloadFile();">Download file</button>
 		</p>
 	</body>
-	<script type="text/javascript" src="src/main.js"></script>
+	<script type="text/javascript" src="src/jquery.2.2.4.min.js"></script>
 	<script type="text/javascript" src="src/lrc/loader.js"></script>
 	<script type="text/javascript" src="src/lrc/lrcCtrl.js"></script>
 	<script type="text/javascript" src="src/lrc/lrcParse.js"></script>
 	<script type="text/javascript" src="src/3th/myapi.js"></script>
 	<script type="text/javascript" src="src/audio/audioRecord.js"></script>
 	<script type="text/javascript" src="src/audio/audioEdit.js"></script>
+	<script type="text/javascript" src="src/main.js"></script>
 	<script language="javascript" type="text/javascript">
 		var v = document.getElementById("videoplayer");
 		var main = new Main(v);

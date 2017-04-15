@@ -1,6 +1,7 @@
 var Main = function(v) {
     this.video = v; 
 }
+var lrc_time = [];
 Main.prototype.initalize = function() {
 	this.loader = new Loader(this);
 	this.lrcCtrl = new LrcCtrl(this);
@@ -17,23 +18,48 @@ Main.prototype.lrcloaded = function(lrcStr) {
 	for(i=0;i<_l;i++) { 
 	   if(this.lrc[i][1]!=""){
 	   	t++;
-	   	this.lrcstr += this.lrc[i][1] +"\n";
+	   	this.lrcstr += this.lrc[i][1] +"=";
 	   }
-	    
 	}
-	var lrcalltxt = document.getElementById("lrcalltxt");
-	console.log(this.lrcstr);
-	lrcalltxt.rows = t;
-	lrcalltxt.textContent = this.lrcstr;
+	var lrcList = this.lrcstr.split("=");
+	var html = '';
+	for (var i = 0; i < lrcList.length; i++) {
+		// html += "<div class='lyric-i'><span class='lyric-list lyric-" + i + "' id='lyric-" + i + "'>" + lrcList[i] + "</span></div>";
+		html += "<P class='lyric-list lyric-" + i + "' id='lyric-" + i + "'>" + lrcList[i] + "</P>";
+	};
+	var lrcalltxt = $("#lrc-go");
+	// lrcalltxt.rows = '3'//ts;
+	// lrcalltxt.textContent = this.lrcstr;
+	lrcalltxt.append(html);
+
+	// var lrcalltxt = document.getElementById("lrcalltxt");
+	// console.log(this.lrcstr);
+	// lrcalltxt.rows = t;
+	// lrcalltxt.textContent = this.lrcstr;
 }
 Main.prototype.play = function() {
 	this.video.play();
 	
 	var lrctxt = document.getElementById("lrctxt");
 	var that = this;
+	var lr_i = 0;
+	var lr_j = 1;
+
 	that.video.addEventListener('timeupdate', function() {
-		if(that.lrc.length != 0 && that.video.currentTime > that.lrc[0][0]) {
-			var str  = that.lrc[0][1];
+		if (that.lrc.length != 0 && that.video.currentTime > that.lrc[0][0]) {
+			// console.log('-----that.lrc[0][0]', that.lrc[0][0])
+			var str = that.lrc[0][1];
+			if (str) {
+				// changeColor('lyric-' + lr_i, lrc_time[lr_j]);
+				console.log(lrc_time[lr_j]);
+				$('.lyric-' + lr_i).addClass('active').siblings('p').removeClass('active');
+				if (lr_i) {
+					$('#lrc-go').css('margin-top', $('#lrc-go').css('margin-top').replace('px', '') - 32 + 'px');
+				}
+				lr_i++;
+				lr_j += 2;
+			}
+
 			that.lrc.shift();
 			console.log(str);
 			lrctxt.textContent = str;
