@@ -53,13 +53,19 @@ var Sound = function(ctx) {
 };
 
 Sound.prototype.loadBase = function() {
-	this.sourceNode = this.ctx.createBufferSource();
-	//this.sourceNode.buffer = this.buffer;
+	// this.sourceNode.buffer = this.buffer;
 	this.volumeNode = this.ctx.createGain();
 	this.volumeNode.gain.value = this.volume;
+
+}
+
+Sound.prototype.loadSource = function(buffer) {
+	this.sourceNode = this.ctx.createBufferSource();
+	this.sourceNode.buffer = buffer;
 	this.sourceNode.loopStart = this.loopStart;
 	this.sourceNode.loopEnd = this.loopEnd;
 	this.sourceNode.loop = this.loop;
+	this.sourceNode.connect(this.volumeNode); 
 }
 
 Sound.prototype.play = function(time) { 

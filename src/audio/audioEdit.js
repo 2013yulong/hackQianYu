@@ -1,13 +1,16 @@
 var AudioEdit = function(_main) {
 	this.main = _main;
 	this.sound = new Sound();
-	this.sound.loadBase();
+	
+	
+	this.isplay = false;
+	this.buffer = null;
 }
 
 AudioEdit.prototype.initalizeData = function(data, callback) {
 	var that = this;
 	this.sound.ctx.decodeAudioData(data, function(buffer) {
-		that.sound.sourceNode.buffer = buffer;
+		that.buffer = buffer;
 		if(callback && typeof callback === 'function') {
 			callback();
 		}
@@ -16,16 +19,15 @@ AudioEdit.prototype.initalizeData = function(data, callback) {
 		alert('source not support');
 	});
 
+    this.sound.loadBase();
     this.sound.loadReverber();
     this.sound.loadEQ();
-    this.sound.load3D();
+    this.sound.load3D(); 
     
-	this.sound.sourceNode.connect(this.sound.volumeNode);
 	this.sound.volumeNode.connect(this.sound.startGain);
 	this.sound.endGain.connect(this.sound.biquads[0]);
 	this.sound.biquads[9].connect(this.sound.panner);
 	this.sound.panner.connect(this.sound.destinationNode);
-	//src.disconnect(dst);
 }
 
 AudioEdit.prototype.setLoop = function(start, end) {
@@ -34,10 +36,29 @@ AudioEdit.prototype.setLoop = function(start, end) {
 	
 }
 AudioEdit.prototype.play = function(offset) { 
-	this.sound.play(offset);
+	if(this.isplay){
+		this.stop(); 
+	}
+	this.sound.loadSource(this.buffer);
+	this.sound.play(offset); 
+	this.isplay = true;
+	
+	this.scriptNode = this.sound.ctx.createScriptProcessor(4096, 1, 1); 
+	audioData.buffer = [];
+	audioData.size = 0;
+	audioData.inputSampleRate = audioCtx.sampleRate;
+	this.scriptNode.onaudioprocess = function (e) { 
+      audioData.input(e.inputBuffer.getChannelData(0));  
+    } 
+	this.sound.sourceNode.connect(this.scriptNode );
+	this.scriptNode.connect(this.sound.ctx.destination);
 }
 AudioEdit.prototype.stop = function() { 
 	this.sound.stop();
+	this.isplay = false;
+	
+	this.sound.sourceNode.disconnect(this.scriptNode );
+	this.scriptNode.disconnect(this.sound.ctx.destination);
 }
 AudioEdit.prototype.suspend = function() { 
 	this.sound.suspend();
