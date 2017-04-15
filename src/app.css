@@ -75,6 +75,13 @@ body{
     /*background-color: #90fb04;*/
     width: 100%;
 }
+.qy-video video{
+    width: 100%;
+    margin-top: 5px;
+}
+.qy-video {
+    /*margin-top: 0;*/
+}
 .qy-recod p{
     margin:5px 0;
 }
@@ -101,12 +108,15 @@ body{
     color: #888;
 }
 .header{
-    margin-top: 15px;
+    margin-top: 20px;
 }
 .header a{
     color: #999;
     border: 0;
     text-decoration:none;
+    font-size: 16px;
+    height: 22px;
+    line-height: 22px;
 }
 #qy-eq-0{
     display: none;
