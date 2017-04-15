@@ -9,6 +9,7 @@
 	</head>
 
 	<body>
+		<a href="qianyu.html" class="logo js_nav_logo">搜狐<span>千语</span></a>
 		<p>
 			<video src="mediasrc/original.mp4" width="320" height="240" controls="controls" id="videoplayer" onplay="playMth()" onpause="pauseMth()" onended="stopMth()" />
 		</p>
@@ -32,18 +33,18 @@
 		<p>
 			<audio id="audioplayer" controls="controls" ></audio>
 		</p>
-		<p>
+		<p class="control">
 			<input type="button" id="play" disabled value="加载中..." onclick="audioCtrl('play')"/>
 			<input type="button" id="stop" value="停止" onclick="audioCtrl('stop')"/>
 			<input type="button" id="suspend" value="暂停" onclick="audioCtrl('pause')"/>
 			<input type="button" id="resume" value="恢复" onclick="audioCtrl('resume')"/>
 		</p>
-		<p>
+		<p class="position">
 			<input type="button" id="pos" value="3d位置x" onclick="audioPos('x')" />
 			<input type="button" id="pos" value="3d位置y" onclick="audioPos('y')" />
 			<input type="button" id="pos" value="3d位置z" onclick="audioPos('z')" />
 		</p>
-		<p>
+		<p class="location">
 			<input type="button" id="reb1" value="电话" onclick="audioReverber(0)" />
 			<input type="button" id="reb2" value="室内" onclick="audioReverber(1)" />
 			<input type="button" id="reb3" value="山洞" onclick="audioReverber(2)" />
@@ -52,15 +53,15 @@
 			<input type="button" id="reb6" value="洗手间" onclick="audioReverber(5)" />
 			<input type="button" id="reb7" value="取消混响" onclick="audioReverber(-1)" />
 		</p>
-		<p>
+		<p class="volum">
 			<input type="button" id="volue1" value="音量5" onclick="audioVolumn(5)" />
 			<input type="button" id="volue2" value="音量0.1" onclick="audioVolumn(0.1)" />
 		</p>
-		<p>
+		<p class="eqtest">
 			<input type="button" id="eq1" value="eqtest" onclick="audioEq()" />
 			<input type="button" id="eq2" value="eq取消" onclick="audioEq(-1)" />
 		</p>
-		<p> 
+		<p class="download"> 
 			<button id="mRecdownloadord" onclick="downloadFile();">Download file</button>
 		</p>
 	</body>

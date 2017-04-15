@@ -3,7 +3,15 @@
 .sec_nav .sohu-nav-pills:after,footer {
 	clear: both
 }
+html{
+	max-width: 320px;
+	margin: 0 auto;
+}
 
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #e14a4a!important
+}
 header {
 	height: 84px!important;
 	font-size: 16px;
@@ -12,6 +20,26 @@ header {
 .swiper-container img{
 	width: 100%;
 	height: 168px;
+}
+.js_sh_app_dl_index.top_banner {
+	position: relative;
+}
+.js_sh_app_dl_index.top_banner .bottom{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	padding-left: 10px;
+	z-index: 1;
+	background: #f0f;
+	background: rgba(8, 8, 8, 0.3);
+}
+.js_sh_app_dl_index.top_banner .orner_title{
+	/*float: right;*/
+	/*right: 15px!important;*/
+}
+.bottom .main_title,
+.bottom .text{
+	color: #fff;
 }
 header .head {
 	box-shadow: none;

@@ -3,6 +3,17 @@ body{
 	margin: 0 auto;
 	text-align: center;
 }
+
+.logo {
+    background: url(../img/qianyu-logo.png) no-repeat;
+    background-size: 96px 125px;
+    float: left;
+    text-indent: -100em;
+    width: 82px;
+    height: 21px;
+    margin: 0 0 0 15px;
+    position: relative;
+}
 #lrcalltxt{
 	text-align: center;
 	display: none;
@@ -28,6 +39,8 @@ body{
 .lyric-list {
     color: #999;
     margin: 0;
+    padding: 8px 0;
+    font-size: 14px;
 }
 .active {
     color: #ff6a00;
@@ -42,8 +55,11 @@ body{
 	white-space: nowrap;
 	z-index: 10;
 	position: absolute;
-	top: 8px;
+	top: 10px;
 	left:0;
+}
+#mRecord{
+    border-right: 1px solid #aaa;
 }
 #cvs{
 	height: 60px;
@@ -51,6 +67,10 @@ body{
 }
 .recodButton button{
 	width: 50%;
-	height: 
+	height: 30px;
+    background-color: #f1f1f1;
+    border-style: none;
 }
-
+.download{
+    background-color: #90fb04;
+}

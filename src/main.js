@@ -23,6 +23,7 @@ Main.prototype.lrcloaded = function(lrcStr) {
 			this.lrcstr += this.lrc[i][1] + "=";
 		}
 		if (i > 0 && this.lrc[i][0]) {
+			// console.log(this.lrc[i][0])
 			lrc_time[i] = (this.lrc[i][0] - this.lrc[i - 1][0]).toFixed(2) * 1000;
 		}
 	}
@@ -30,7 +31,8 @@ Main.prototype.lrcloaded = function(lrcStr) {
 	var lrcList = this.lrcstr.split("=");
 	var html = '';
 	for (var i = 0; i < lrcList.length; i++) {
-		html += "<div class='lyric-i'><span class='lyric-list lyric-" + i + "' id='lyric-" + i + "'>" + lrcList[i] + "</span></div>";
+		// html += "<div class='lyric-i'><span class='lyric-list lyric-" + i + "' id='lyric-" + i + "'>" + lrcList[i] + "</span></div>";
+		html += "<P class='lyric-list lyric-" + i + "' id='lyric-" + i + "'>" + lrcList[i] + "</P>";
 	};
 	var lrcalltxt = $("#lrc-go");
 	// lrcalltxt.rows = '3'//ts;
@@ -47,13 +49,13 @@ Main.prototype.play = function() {
 	// console.log('-------this.lrc_time', lrc_time)
 	that.video.addEventListener('timeupdate', function() {
 		if (that.lrc.length != 0 && that.video.currentTime > that.lrc[0][0]) {
-			console.log('-----that.lrc[0][0]', that.lrc[0][0])
+			// console.log('-----that.lrc[0][0]', that.lrc[0][0])
 			var str = that.lrc[0][1];
 			that.lrc.shift();
 			if (str) {
-				changeColor('lyric-' + lr_i, lrc_time[lr_j]);
+				// changeColor('lyric-' + lr_i, lrc_time[lr_j]);
 				console.log(lrc_time[lr_j]);
-				// $('.lyric-' + lr_i).addClass('active').siblings('p').removeClass('active');
+				$('.lyric-' + lr_i).addClass('active').siblings('p').removeClass('active');
 				if (lr_i) {
 					$('#lrc-go').css('margin-top', $('#lrc-go').css('margin-top').replace('px', '') - 32 + 'px');
 				}
@@ -107,7 +109,7 @@ Main.prototype.micRecord = function() {
 	this.video.src = "mediasrc/mute.mp4";
 	this.aplayer = document.getElementById("aplayer");
 	this.aplayer.src = "mediasrc/original.wav";
-	this.aplayer.play();
+	//this.aplayer.play();
 
 	this.audioRecord.recordStart();
 	this.play();
@@ -120,7 +122,7 @@ Main.prototype.micStop = function() {
 
 Main.prototype.saveAudioData = function(blob) {
 
-	/*downloadFile(blob);
+	downloadFile(blob);
 	
 	function downloadFile (blob){
 		var a = document.createElement('a');
@@ -130,7 +132,7 @@ Main.prototype.saveAudioData = function(blob) {
 		a.download = filename;
 		a.click();
 		window.URL.revokeObjectURL(url);
-	}*/
+	}
 
 	var url = window.URL.createObjectURL(blob);
 	this.audioplayer = document.getElementById("audioplayer");
@@ -166,4 +168,23 @@ Main.prototype.audioCtrl = function(type) {
 			this.audioEdit.sound.resume();
 			break;
 	}
+}
+Main.prototype.downloadFile = function(){
+	window.URL = window.URL || window.webkitURL; 
+	this.audioEdit.stop();
+	//var blob = new Blob([this.audioEdit.sound.sourceNode.buffer],{ type: 'audio/wav' })
+	var a = document.createElement('a');
+	var url = window.URL.createObjectURL(getBlob());
+	var filename = 'a.wav';
+	a.href = url;
+	a.download = filename;
+	a.click();
+	window.URL.revokeObjectURL(url);
+	
+	/*window.URL = window.URL || window.webkitURL;
+
+	var blob = new Blob([new Uint8Array(binStream)], {type: "octet/stream"});
+	
+	var link = document.getElementById("link");
+	link.href = window.URL.createObjectURL(blob);*/
 }
