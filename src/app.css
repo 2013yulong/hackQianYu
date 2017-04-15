@@ -71,6 +71,66 @@ body{
     background-color: #f1f1f1;
     border-style: none;
 }
-.download{
-    background-color: #90fb04;
+.download button{
+    /*background-color: #90fb04;*/
+    width: 100%;
 }
+.qy-recod p{
+    margin:5px 0;
+}
+.qy-recod button,
+.qy-recod input{
+    border-style: solid;
+}
+.qy-recod {
+    text-align: left;
+    background-color: #f1f1f1;
+}
+.qy-recod .single{
+    background-color: #f1f1f1;
+}
+.qy-recod .double{
+    background-color: #ddd;
+}
+.clearBoth{
+    clear: both;
+}
+.qy-left{
+    /*float: left;*/
+    font-size: 16px;
+    color: #888;
+}
+.header{
+    margin-top: 15px;
+}
+.header a{
+    color: #999;
+    border: 0;
+    text-decoration:none;
+}
+#qy-eq-0{
+    display: none;
+}
+/*
+.qy-eqest {
+  position: fixed;
+  z-index: 111;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+.qy-bg {
+    width:100%;
+    height:100%;
+    position: fixed;
+}
+.qy-cont{
+    background: #fff;
+    width: 85%;
+    margin: 25% auto 0;
+    border-radius: 8px;
+    text-align: center;
+    padding: 14px;
+}*/
