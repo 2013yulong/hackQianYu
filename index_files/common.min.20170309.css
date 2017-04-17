@@ -4,7 +4,7 @@
 	clear: both
 }
 html{
-	max-width: 320px;
+	max-width: 560px;
 	margin: 0 auto;
 }
 
@@ -19,7 +19,7 @@ header {
 }
 .swiper-container img{
 	width: 100%;
-	height: 168px;
+	height: 320px;
 }
 .js_sh_app_dl_index.top_banner {
 	position: relative;
